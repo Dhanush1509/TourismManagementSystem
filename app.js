@@ -1,5 +1,5 @@
 const express = require("express");
-const { notFound, errorHandler } = require("./middlewares/errorHandler.js");
+const { notFound, errorHandler } = require("../middlewares/errorHandler.js.js");
 const users = require("./routes/users.js");
 const packages = require("./routes/package.js");
 const DB_CONNECT = require("./config/db.js");
