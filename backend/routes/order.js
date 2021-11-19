@@ -7,8 +7,8 @@ const {
   getMyOrders,
   getAllOrders,
   updateOrderById,
-} = require("../../controllers/order.js.js");
-const razorPayInstance = require("../../controllers/razorPayInstance.js.js");
+} = require("../controllers/order.js");
+const razorPayInstance = require("../controllers/razorPayInstance.js");
 const { protect, checkAdmin } = require("../middlewares/setAuthToken.js");
 router.route("/addorder").post(protect, addOrder);
 router.route("/razorpay/generateid").post(protect, razorPayInstance);

@@ -1,6 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/User.js");
-const Token = require("../models/Token.js.js");
+const Token = require("../models/Token.js");
 const generateToken = require("../utils/generateToken.js");
 const crypto = require("crypto");
 const sgMail = require("@sendgrid/mail");

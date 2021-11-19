@@ -10,7 +10,7 @@ const {
   commentArticle,
   createArticle,
   getAllArticlesOfAuthor,
-} = require("../../controllers/article.js.js");
+} = require("../controllers/article.js");
 
 /**
  * get all articles
