@@ -21,7 +21,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 const userInfoInStorage = localStorage.getItem("userInfo")
   ? JSON.parse(localStorage.getItem("userInfo"))
-  : [];
+  :null;
 const AuthState = (props) => {
   const initialState = {
     userInfo: userInfoInStorage,

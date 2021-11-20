@@ -71,26 +71,27 @@ exports.orderSuccess = asyncHandler(async (req, res) => {
     };
 
     const updatedOrder = await order.save();
-    // if (updatedOrder) {
-    //   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-    //   const msg = {
-    //     to: order.user.email,
-    //     from: "ui19co56@iiitsurat.ac.in", // Use the email address or domain you verified above
-    //     subject: "I ❤ HappyTour",
-    //     text: "Ticket Reserved",
-    //   };
+    if (updatedOrder) {
+      sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+      const msg = {
+        to: order.user.email,
+        from: "ui19co56@iiitsurat.ac.in", // Use the email address or domain you verified above
+        subject: "I ❤ HappyTour",
+        text: "Ticket Reserved",
+        html:
+      };
 
-    //   sgMail.send(msg).then(
-    //     () => {},
-    //     (error) => {
-    //       console.error(error);
+      sgMail.send(msg).then(
+        () => {},
+        (error) => {
+          console.error(error);
 
-    //       if (error.response) {
-    //         console.error(error.response.body);
-    //       }
-    //     }
-    //   );
-    // }
+          if (error.response) {
+            console.error(error.response.body);
+          }
+        }
+      );
+    }
     res.json({
       ...updatedOrder,
       message: "Ticket Reserved Successfully",
