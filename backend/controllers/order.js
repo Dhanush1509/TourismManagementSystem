@@ -78,7 +78,7 @@ exports.orderSuccess = asyncHandler(async (req, res) => {
         from: "ui19co56@iiitsurat.ac.in", // Use the email address or domain you verified above
         subject: "I ❤ HappyTour",
         text: "Ticket Reserved",
-        html:
+ 
       };
 
       sgMail.send(msg).then(
