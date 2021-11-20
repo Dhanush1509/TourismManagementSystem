@@ -132,6 +132,21 @@ code {
   justify-content: center;
   box-sizing: border-box;
 }
+.articleEditor p{
+  font-size:20px;
+}
+.articleEditor h1{
+  font-size: 36px;
+}
+.articleEditor h2{
+  font-size: 34px;
+}
+.articleEditor h3{
+  font-size: 32px;
+}
+.articleEditor h4{
+  font-size: 28px;
+}
 
 .cardInProfile .banner .svgimage {
   background-color: #fff;

@@ -128,7 +128,7 @@ const SingleArticle = ({ match }) => {
     <div className="articleEditor">
       {singleArticle ? (
         <>
-          <Meta title={singleArticle.title} />
+    
           <center>
             <h1>{singleArticle.title}</h1>
           </center>

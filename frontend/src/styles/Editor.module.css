@@ -90,7 +90,7 @@
 }
 
 .editableclass{
-    height:100px;
+    min-height:100px;
     padding:2px 0 0 2px;
     border:1px solid #ccc;
     margin-top: 20px;
