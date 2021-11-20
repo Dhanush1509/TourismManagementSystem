@@ -25,18 +25,18 @@ app.use("/api/articles", articles);
 app.use("/api/packages", packages);
 app.use("/orders", orders);
 
-
-
-if(process.env.NODE_ENV==='production'){
-app.use(express.static(path.join(__dirname,'/frontend/build')))
-app.get('*',(req, res) =>{
-    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
-})
-}
-else{
-    app.get('/',(req,res)=>{
-res.send('API is running');
-    })
+if (process.env.NODE_ENV === "production") {
+  console.log(__dirname);
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(
+      path.resolve(__dirname, "..", "frontend", "build", "index.html")
+    );
+  });
+} else {
+  app.get("/", (req, res) => {
+    res.send("API is running");
+  });
 }
 
 app.use(notFound);
