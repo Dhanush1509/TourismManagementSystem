@@ -30,16 +30,8 @@ const userSchema = mongoose.Schema(
       required: true,
       default: true,
     },
-    mobile: {
-      type: Number,
-      required: false,
-    },
-    Address: {
-      address: { type: String, required: false },
-      city: { type: String, required: false },
-      postalCode: { type: String, required: false },
-      country: { type: String, required: false },
-    },
+   
+ 
     
   },
 

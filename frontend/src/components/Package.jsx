@@ -11,6 +11,7 @@ import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles } from "@material-ui/core/styles";
 import PackageContext from "../context/Package/PackageContext";
+
 import moment from "moment";
 const useStyles = makeStyles((theme) => ({
   backdrop: {
@@ -53,46 +54,53 @@ const Package = ({ history, location }) => {
     imgSrc: null,
   });
   const handleSubmit = () => {
-    const formdata = new FormData();
-    formdata.append("pName", packageDetails.pName);
-    formdata.append("pType", packageDetails.pType);
-    formdata.append("pLocation", packageDetails.pLocation);
-    formdata.append("pPrice", packageDetails.pPrice);
-    formdata.append("pTag", packageDetails.pTag);
-    formdata.append("pDescription", packageDetails.pDescription);
-    formdata.append("imgSrc", packageDetails.imgSrc);
-    formdata.append("pAvailable", packageDetails.pAvailable);
-
-    formdata.append("pStart",new Date(packageDetails.pStart).toISOString());
-    formdata.append("pEnd",new Date(packageDetails.pEnd).toISOString());
-    createPackage(formdata);
-    setPackageDetails({
-      pName: "",
-      pType: "",
-      pLocation: "",
-      pPrice: "",
-      pTag: "",
-      pDescription: "",
-      pAvailable: "",
-      pStart:"",
-      pEnd:"",
-      imgSrc: null,
-    });
-  };
-  const handleReset = () => {
-    setPackageDetails({
-      pName: "",
-      pType: "",
-      pLocation: "",
-      pPrice: "",
-      pTag: "",
-      pDescription: "",
-      pAvailable: "",
-     
-      pStart:"",
-      pEnd:"",
-      imgSrc: null,
-    });
+    if(pName==""||pType==""||pLocation==""||pPrice==""||pTag==""||pDescription==""||imgSrc==""||pAvailable==""){
+      setAlert("Fields cannot be empty", "white", "red");
+    }
+    else{
+      const formdata = new FormData();
+      formdata.append("pName", packageDetails.pName);
+      formdata.append("pType", packageDetails.pType);
+      formdata.append("pLocation", packageDetails.pLocation);
+      formdata.append("pPrice", packageDetails.pPrice);
+      formdata.append("pTag", packageDetails.pTag);
+      formdata.append("pDescription", packageDetails.pDescription);
+      formdata.append("imgSrc", packageDetails.imgSrc);
+      formdata.append("pAvailable", packageDetails.pAvailable);
+  
+      formdata.append("pStart",new Date(packageDetails.pStart).toISOString());
+      formdata.append("pEnd",new Date(packageDetails.pEnd).toISOString());
+      
+      createPackage(formdata);
+      setPackageDetails({
+        pName: "",
+        pType: "",
+        pLocation: "",
+        pPrice: "",
+        pTag: "",
+        pDescription: "",
+        pAvailable: "",
+        pStart:"",
+        pEnd:"",
+        imgSrc: null,
+      });
+    };
+    const handleReset = () => {
+      setPackageDetails({
+        pName: "",
+        pType: "",
+        pLocation: "",
+        pPrice: "",
+        pTag: "",
+        pDescription: "",
+        pAvailable: "",
+       
+        pStart:"",
+        pEnd:"",
+        imgSrc: null,
+      });
+    }
+  
   };
   //   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
 

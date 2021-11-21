@@ -322,7 +322,7 @@ const Packages = () => {
                   <td>{c.pLocation}</td>
                   <td>{c.pType}</td>
                   <td>{c.pPrice}</td>
-                  <td>{c.pAvailable}</td>\
+                  <td>{c.pAvailable}</td>
                   <td>{moment(c.pStart).format("MMMM Do YYYY")}</td>
                   <td>{moment(c.pEnd).format("MMMM Do YYYY")}</td>
                   <td

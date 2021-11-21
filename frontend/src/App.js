@@ -25,7 +25,9 @@ import PlaceOrder from "./pages/PlaceOrder";
 import OrderState from "./context/Order/OrderState";
 import Ticket from "./pages/Ticket";
 import UserDetails from "./pages/UserDetails";
-import AdminOrders from "./pages/AdminOrders"
+import AdminOrders from "./pages/AdminOrders";
+import AdminRoute from "./utils/AdminRoute";
+import PrivateRoute from "./utils/PrivateRoute";
 function App() {
   return (
     <div className="App">
@@ -46,26 +48,57 @@ function App() {
                     />
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/login" component={Login} />
-                    <Route exact path="/editor" component={Editor} />
-                    <Route exact path="/articles" component={Home} />
-                    <Route exact path="/admin" component={Admin} />
-                    <Route exact path="/package/create" component={Package} />
-                    <Route exact path="/admin/packages" component={Packages} />
                     <Route exact path="/packages" component={UserPackages} />
-                    <Route exact path="/admin/users" component={Users} />
                     <Route
                       exact
                       path="/packages/:packageid"
                       component={SinglePackage}
                     />
-                    <Route exact path="/buypackage" component={PackageForm} />
-                    <Route exact path="/payment" component={PaymentPage} />
-                    <Route exact path="/placeorder" component={PlaceOrder} />
+                    <Route exact path="/articles" component={Home} />
+                    <AdminRoute exact path="/admin" component={Admin} />
+                    <AdminRoute
+                      exact
+                      path="/package/create"
+                      component={Package}
+                    />
+                    <AdminRoute
+                      exact
+                      path="/admin/packages"
+                      component={Packages}
+                    />
+                    <AdminRoute
+                      exact
+                      path="/admin/orders"
+                      component={AdminOrders}
+                    />
+                    <AdminRoute exact path="/admin/users" component={Users} />
+                    <PrivateRoute exact path="/editor" component={Editor} />
+                    <PrivateRoute
+                      exact
+                      path="/buypackage"
+                      component={PackageForm}
+                    />
+                    <PrivateRoute
+                      exact
+                      path="/payment"
+                      component={PaymentPage}
+                    />
+                    <PrivateRoute
+                      exact
+                      path="/placeorder"
+                      component={PlaceOrder}
+                    />
+                    <PrivateRoute
+                      exact
+                      path="/tickets/:orderId/ticket/download"
+                      component={Ticket}
+                    />
+                    <PrivateRoute
+                      exact
+                      path="/profile"
+                      component={UserDetails}
+                    />
                     <Route exact path="/" component={Main} />
-                    <Route exact path="/tickets/:orderId/ticket/download" component={Ticket}/>
-
-                    <Route exact path="/admin/orders" component={AdminOrders}/>
-                    <Route exact path="/profile" component={UserDetails}/>
                   </Switch>
                 </Router>
               </AlertState>

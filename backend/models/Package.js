@@ -11,7 +11,6 @@ let PackageSchema = new mongoose.Schema(
     pAvailable: Number,
     pStart: Date,
     pEnd: Date,
-
     status: { type: Number, default: 1 },
     heart: {
       type: Number,

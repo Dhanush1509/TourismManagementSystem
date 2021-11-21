@@ -53,7 +53,7 @@ const Comment = ({ articleid }) => {
         {singleArticle.comments.length > 0 &&
           singleArticle.comments.map((c) => (
             <div className="comment-card" style={{ marginTop: "10px" }}>
-              <span> {c.text}</span>
+              <p> {c.text}</p>
               <br />
               <span style={{ fontSize: "1rem" }}>
                 Commented by {c.author.name} at{" "}
