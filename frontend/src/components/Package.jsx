@@ -53,8 +53,23 @@ const Package = ({ history, location }) => {
     pEnd:"",
     imgSrc: null,
   });
+  const handleReset = () => {
+    setPackageDetails({
+      pName: "",
+      pType: "",
+      pLocation: "",
+      pPrice: "",
+      pTag: "",
+      pDescription: "",
+      pAvailable: "",
+     
+      pStart:"",
+      pEnd:"",
+      imgSrc: null,
+    });
+  }
   const handleSubmit = () => {
-    if(pName==""||pType==""||pLocation==""||pPrice==""||pTag==""||pDescription==""||imgSrc==""||pAvailable==""){
+    if( packageDetails.pName==""|| packageDetails.pType==""|| packageDetails.pLocation==""|| packageDetails.pPrice==""|| packageDetails.pTag==""|| packageDetails.pDescription==""|| packageDetails.imgSrc==""|| packageDetails.pAvailable==""){
       setAlert("Fields cannot be empty", "white", "red");
     }
     else{
@@ -85,21 +100,7 @@ const Package = ({ history, location }) => {
         imgSrc: null,
       });
     };
-    const handleReset = () => {
-      setPackageDetails({
-        pName: "",
-        pType: "",
-        pLocation: "",
-        pPrice: "",
-        pTag: "",
-        pDescription: "",
-        pAvailable: "",
-       
-        pStart:"",
-        pEnd:"",
-        imgSrc: null,
-      });
-    }
+
   
   };
   //   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
