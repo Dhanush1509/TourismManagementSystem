@@ -168,7 +168,7 @@ const Editor = (props) => {
           <textarea
             cols="1"
             id="description"
-            placeholder="Description"
+            placeholder="What is Article about?"
           ></textarea>
           <p className="mb-0 m-auto">Write your post below</p>
           <div id="editableclass" className={styles.editableclass}></div>

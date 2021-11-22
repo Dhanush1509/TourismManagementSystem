@@ -133,7 +133,7 @@ code {
   box-sizing: border-box;
 }
 .articleEditor p{
-  font-size:20px;
+  font-size:16px;
 }
 .articleEditor h1{
   font-size: 36px;
@@ -147,7 +147,9 @@ code {
 .articleEditor h4{
   font-size: 28px;
 }
-
+blockquote{
+  font-size:16px;
+}
 .cardInProfile .banner .svgimage {
   background-color: #fff;
   width: 8rem;

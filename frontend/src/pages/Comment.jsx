@@ -52,13 +52,13 @@ const Comment = ({ articleid }) => {
       <>
         {singleArticle.comments.length > 0 &&
           singleArticle.comments.map((c) => (
-            <div className="comment-card" style={{ marginTop: "10px" }}>
-              <p> {c.text}</p>
-              <br />
-              <span style={{ fontSize: "1rem" }}>
+            <div className="comment-card" style={{ margin: "10px 0 0 0" }}>
+              <p style={{ fontSize: "1rem" }}> {c.text}</p>
+           
+              <p style={{ fontSize: "0.75rem" }}>
                 Commented by {c.author.name} at{" "}
                 {moment(c.commentAt).format("MMM D, YYYY")}
-              </span>
+              </p>
             </div>
           ))}
       </>
