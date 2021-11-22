@@ -30,9 +30,7 @@ const userSchema = mongoose.Schema(
       required: true,
       default: true,
     },
-   
- 
-    
+  
   },
 
   { timestamps: true }

@@ -48,7 +48,6 @@ const Package = ({ history, location }) => {
     pTag: "",
     pDescription: "",
     pAvailable: "",
- 
     pStart:"",
     pEnd:"",
     imgSrc: null,
@@ -62,14 +61,13 @@ const Package = ({ history, location }) => {
       pTag: "",
       pDescription: "",
       pAvailable: "",
-     
       pStart:"",
       pEnd:"",
       imgSrc: null,
     });
   }
   const handleSubmit = () => {
-    if( packageDetails.pName==""|| packageDetails.pType==""|| packageDetails.pLocation==""|| packageDetails.pPrice==""|| packageDetails.pTag==""|| packageDetails.pDescription==""|| packageDetails.imgSrc==""|| packageDetails.pAvailable==""){
+    if( packageDetails.pName==""|| packageDetails.pType==""|| packageDetails.pLocation==""|| packageDetails.pPrice==""|| packageDetails.pDescription==""|| packageDetails.imgSrc==""|| packageDetails.pAvailable==""){
       setAlert("Fields cannot be empty", "white", "red");
     }
     else{
