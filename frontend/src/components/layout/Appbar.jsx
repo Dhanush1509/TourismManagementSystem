@@ -205,11 +205,7 @@ const Appbar = ({ history }) => {
                 Orders
                   </MenuItem>
                 )}
-                {userInfo.isAdmin && (
-                  <MenuItem onClick={() => history.push("/editor")}>
-                    Create Post
-                  </MenuItem>
-                )}
+               
                 {userInfo.isAdmin && (
                   <MenuItem onClick={() => history.push("/package/create")}>
                     Create Package
@@ -240,6 +236,11 @@ const Appbar = ({ history }) => {
                 <MenuItem onClick={() => history.push("/articles")}>
                   Articles
                 </MenuItem>
+           
+                  <MenuItem onClick={() => history.push("/editor")}>
+                    Create Post
+                  </MenuItem>
+           
                 <MenuItem onClick={handleClose1}>Logout</MenuItem>
               </Menu>
             </>
