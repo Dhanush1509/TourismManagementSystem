@@ -138,13 +138,36 @@ exports.getAllOrders = asyncHandler(async (req, res) => {
 });
 exports.updateOrderById = asyncHandler(async (req, res) => {
   const id = req.params.id;
-  const order = await Order.findById(id);
 
+  const order = await Order.findById(id)
+  .populate("user", "name email")
+  .populate("packageInfo");
   if (order) {
     order.isVerified = true;
     order.verifiedAt = Date.now();
     order.ID = uuidv4();
     const updatedOrder = await order.save();
+    if (updatedOrder) {
+      sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+      const msg = {
+        to: order.user.email,
+        from: "ui19co56@iiitsurat.ac.in", // Use the email address or domain you verified above
+        subject: "I ❤ HappyTour",
+        text: "Ticket Verified",
+        html: `<br/><p>Click the below link to view the ticket</p><br/><a href="${process.env.URL}/tickets/${id}/ticket/download">View your ticket here.</a>`,
+      };
+
+      sgMail.send(msg).then(
+        () => {},
+        (error) => {
+          console.error(error);
+
+          if (error.response) {
+            console.error(error.response.body);
+          }
+        }
+      );
+    }
     res.status(200).json(updatedOrder);
   } else {
     throw new Error("Some error occurred");
