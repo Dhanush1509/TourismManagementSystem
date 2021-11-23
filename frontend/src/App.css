@@ -176,7 +176,7 @@ sup {
 }
 
 a {
-  color: #d9230f;
+ 
   text-decoration: none;
   background-color: transparent
 }
@@ -5282,7 +5282,9 @@ input[type=submit].btn-block {
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid #eee;
-  border-radius: .25rem
+  border-radius: .25rem;
+  min-height:400px;
+  
 }
 
 .card>hr {

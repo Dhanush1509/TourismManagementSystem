@@ -1,10 +1,11 @@
 const asyncHandler = require("express-async-handler");
 const Order = require("../models/Order.js");
 const User = require("../models/User.js");
+const Package = require("../models/Package.js");
 const crypto = require("crypto");
 const sgMail = require("@sendgrid/mail");
 const dotenv = require("dotenv");
-const { v4 : uuidv4 } =require('uuid');
+const { v4: uuidv4 } = require("uuid");
 uuidv4();
 dotenv.config();
 exports.addOrder = asyncHandler(async (req, res) => {
@@ -35,7 +36,9 @@ exports.addOrder = asyncHandler(async (req, res) => {
 });
 exports.getOrderById = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  const order = await Order.findById(id).populate("user", "name email").populate("packageInfo");;
+  const order = await Order.findById(id)
+    .populate("user", "name email")
+    .populate("packageInfo");
   if (order) res.json(order);
   else res.json({ message: "order does not exists" });
 });
@@ -56,19 +59,26 @@ exports.orderSuccess = asyncHandler(async (req, res) => {
   if (digest !== razorpaySignature) {
     return res.status(400).json({ msg: "Transaction not legit!" });
   }
-  const order = await Order.findById(orderIdOfCurrent).populate(
-    "user",
-    "name email"
-  ).populate("packageInfo");
+  const order = await Order.findById(orderIdOfCurrent)
+    .populate("user", "name email")
+    .populate("packageInfo");
 
   if (order) {
     order.isPaid = true;
     order.paidAt = Date.now();
+
     order.paymentResult = {
       razorpayPaymentId,
       razorpayOrderId,
       razorpaySignature,
     };
+
+    // const packageD=await Package.findById(order.packageInfo);
+    // if(packageD)
+    //   if(packageD.pAvailable>0)
+    //   packageD.pAvailable=packageD.pAvailable-order.adultsCount;
+
+    //   await PackageD.save();
 
     const updatedOrder = await order.save();
     if (updatedOrder) {
@@ -78,7 +88,7 @@ exports.orderSuccess = asyncHandler(async (req, res) => {
         from: "ui19co56@iiitsurat.ac.in", // Use the email address or domain you verified above
         subject: "I ❤ HappyTour",
         text: "Ticket Reserved",
- 
+        html: `<br/><p>Click the below link to view the ticket</p><br/><a href="${process.env.URL}/tickets/${order._id}/ticket/download">View your ticket here.</a>`,
       };
 
       sgMail.send(msg).then(
@@ -102,9 +112,9 @@ exports.orderSuccess = asyncHandler(async (req, res) => {
   }
 });
 exports.getMyOrders = asyncHandler(async (req, res) => {
-  const myorders = await Order.find({ user: req.user._id }).select(
-    "-paymentResult.razorpaySignature -paymentResult.razorpayOrderId"
-  ).populate("packageInfo");
+  const myorders = await Order.find({ user: req.user._id })
+    .select("-paymentResult.razorpaySignature -paymentResult.razorpayOrderId")
+    .populate("packageInfo");
   if (myorders) {
     res.status(200).json(myorders);
   } else {
@@ -116,7 +126,10 @@ exports.getMyOrders = asyncHandler(async (req, res) => {
 // YOU CAN SAVE THE DETAILS IN YOUR DATABASE IF YOU WANT
 
 exports.getAllOrders = asyncHandler(async (req, res) => {
-  const orders = await Order.find({}).sort([["isPaid", -1]]).populate("packageInfo").populate("user");
+  const orders = await Order.find({})
+    .sort([["isPaid", -1]])
+    .populate("packageInfo")
+    .populate("user");
   if (orders) {
     res.status(200).json({ orders });
   } else {
@@ -130,7 +143,7 @@ exports.updateOrderById = asyncHandler(async (req, res) => {
   if (order) {
     order.isVerified = true;
     order.verifiedAt = Date.now();
-    order.ID=uuidv4();
+    order.ID = uuidv4();
     const updatedOrder = await order.save();
     res.status(200).json(updatedOrder);
   } else {

@@ -11,7 +11,6 @@ import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles } from "@material-ui/core/styles";
 import PackageContext from "../context/Package/PackageContext";
-
 import moment from "moment";
 const useStyles = makeStyles((theme) => ({
   backdrop: {
@@ -25,7 +24,7 @@ const Package = ({ history, location }) => {
     authLoading,
     isAuthenticated,
     registerUser,
-    message,
+    message, 
     error,
     userInfo,
   } = useContext(AuthContext);
@@ -33,13 +32,14 @@ const Package = ({ history, location }) => {
     useContext(PackageContext);
   const { setAlert } = useContext(AlertContext);
   useEffect(() => {
-    if (message) {
-      setAlert(message, "white", "green");
+    if (packageMessage) {
+      setAlert(packageMessage, "white", "green");
+      history.push("/packages")
     }
     // if (tourPackage) {
     //   history.push(`/packages/${tourPackage._id}`);
     // }
-  }, [tourPackage, message]);
+  }, [tourPackage, packageMessage]);
   const [packageDetails, setPackageDetails] = useState({
     pName: "",
     pType: "",
